@@ -1,15 +1,17 @@
-const { merge } = require("webpack-merge");
-const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
+const { merge } = require('webpack-merge');
+const singleSpaDefaults = require('webpack-config-single-spa-react-ts');
 
 module.exports = (webpackConfigEnv, argv) => {
-  const defaultConfig = singleSpaDefaults({
-    orgName: "bytebank",
-    projectName: "auth",
-    webpackConfigEnv,
-    argv,
-  });
+	const defaultConfig = singleSpaDefaults({
+		orgName: 'bytebank',
+		projectName: 'auth',
+		webpackConfigEnv,
+		argv,
+	});
 
-  return merge(defaultConfig, {
-    // modify the webpack config however you'd like to by adding to this object
-  });
+	return merge(defaultConfig, {
+		devServer: {
+			hot: false, // Desativa o HMR
+		},
+	});
 };
