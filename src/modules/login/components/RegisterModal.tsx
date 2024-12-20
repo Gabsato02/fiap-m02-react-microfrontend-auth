@@ -1,8 +1,15 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+
 import registerImage from '../assets/register-desktop.svg';
 import registerImageMobile from '../assets/register-mobile.svg';
 
 export default function RegisterModal() {
+  console.log(useForm)
+  const onSubmit = (d) => console.log(d);
+
+  const { register, handleSubmit } = useForm();
+  
   return (
     <div
       className="modal fade"
@@ -16,55 +23,70 @@ export default function RegisterModal() {
           <div className="modal-body">
             <img src={registerImage} className="img-fluid mx-auto d-none d-md-block" alt="..."></img>
             <img src={registerImageMobile} className="d-block mx-auto d-md-none img-fluid" alt="..."></img>
-            <form className="mt-3">
+            <form className="mt-3" noValidate>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
                   Nome
                 </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="name"
-                  placeholder="Digite seu nome completo"
-                  required
-                />
+                <div className="input-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Digite seu nome completo"
+                    required
+             
+                  />
+                </div>
               </div>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
                   E-mail
                 </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="email"
-                  placeholder="Digite seu e-mail"
-                  required
-                />
+                <div className="input-group">
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    placeholder="Digite seu e-mail"
+                    required
+                 
+                  />
+                </div>
               </div>
               <div className="mb-3">
                 <label htmlFor="password" className="form-label">
                   Senha
                 </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  placeholder="Digite sua senha"
-                  required
-                />
+                <div className="input-group">
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    placeholder="Digite sua senha"
+                    required
+               
+                  />
+                </div>
               </div>
 
               <div className="mb-3">
                 <label htmlFor="password" className="form-label">
                   Confirme sua senha
                 </label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="password"
-                  placeholder="Confirme sua senha"
-                  required
-                />
+                <div className="input-group has-validation">
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    placeholder="Confirme sua senha"
+                    required
+             
+                  />
+                  <div className="invalid-feedback">
+                    As senhas devem ser iguais
+                  </div>
+                </div>
               </div>
               <div className="mb-3">
                 <div className="form-check">
