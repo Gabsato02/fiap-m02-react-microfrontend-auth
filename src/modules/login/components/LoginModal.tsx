@@ -1,8 +1,18 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import loginImage from '../assets/login-desktop.svg';
 import loginImageMobile from '../assets/login-mobile.svg';
 
 export default function LoginModal() {
+    const { 
+    register, 
+    handleSubmit, 
+    formState: { 
+      errors, 
+      isValid 
+    }
+  } = useForm({ mode: 'onChange' });
+
   return (
     <div
       className="modal fade"

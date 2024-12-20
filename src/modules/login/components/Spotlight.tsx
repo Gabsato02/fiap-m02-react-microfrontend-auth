@@ -4,7 +4,7 @@ import spotlightImageMobile from '../assets/spotlight-mobile.svg';
 
 export default function Spotlight() {
   return (
-    <section className="bg-light h-100 pt-5 mt-5 rounded-lg">
+    <section className="bg-light h-100 py-5 mt-5 rounded-lg">
       <div className="container">
         <h1 className="display-4 text-success">Seja bem vindo ao Bytebank</h1>
         <div className="d-flex flex-column flex-md-row align-items-md-center py-md-5">

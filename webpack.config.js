@@ -13,6 +13,6 @@ module.exports = (webpackConfigEnv, argv) => {
 		devServer: {
 			hot: false, // Desativa o HMR
 		},
-		externals: ['react-hook-form'],
+		externals: ["react-hook-form", "axios"],
 	});
 };

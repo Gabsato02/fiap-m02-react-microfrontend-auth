@@ -3,11 +3,27 @@ import { useForm } from "react-hook-form";
 
 import registerImage from '../assets/register-desktop.svg';
 import registerImageMobile from '../assets/register-mobile.svg';
+import { Button } from "../../../components";
+import { createUser } from "../services";
 
 export default function RegisterModal() {
   const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/;
 
-  const onSubmit = (d) => console.log(d);
+  const [loading, setLoading] = React.useState(false);
+
+  const onSubmit = async (form) => {
+    setLoading(true);
+
+    try {
+      const { disclaimer, passwordConfirm, ...payload } = form;
+
+      await createUser(payload);
+    } catch (err) {
+      console.log('errorCreatingUser');      
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const { 
     register, 
@@ -15,8 +31,7 @@ export default function RegisterModal() {
     formState: { 
       errors, 
       isValid 
-    }, 
-    trigger 
+    }
   } = useForm({ mode: 'onChange' });
   
   return (
@@ -40,12 +55,12 @@ export default function RegisterModal() {
                 <div className="input-group">
                   <input
                     type="text"
-                    className={`form-control ${errors.name && 'is-invalid'}`}
+                    className={`form-control ${errors.username && 'is-invalid'}`}
                     id="name"
                     name="name"
                     placeholder="Digite seu nome completo"
                     required
-                    {...register('name', { required: true })}
+                    {...register('username', { required: true })}
                   />
                   <div className="invalid-feedback">* Obrigatório</div>
                 </div>
@@ -121,9 +136,14 @@ export default function RegisterModal() {
                   <div className="invalid-feedback">* É necessário aceitar os termos de uso</div>
                 </div>
               </div>
-              <button type="submit" className="btn btn-success w-100" disabled={!isValid}>
-                Criar conta
-              </button>
+              <Button
+                label="Criar conta"
+                type="submit"
+                variant="success"
+                className="w-100"
+                disabled={!isValid}
+                isLoading={loading}
+              ></Button>
             </form>
           </div>
         </div>

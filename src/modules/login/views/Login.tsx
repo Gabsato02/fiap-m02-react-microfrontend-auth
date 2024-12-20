@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import Footer from "../components/Footer";
 import LoginModal from "../components/LoginModal";
 import Nav from "../components/Nav";
@@ -10,10 +11,8 @@ export default function Login(props) {
       <Nav></Nav>
       <LoginModal></LoginModal>
       <RegisterModal></RegisterModal>
-      <main className="vh-100">
-        <Spotlight></Spotlight>
-        <Footer></Footer>
-      </main>
+      <Spotlight></Spotlight>
+      <Footer></Footer>
     </>
   );
 }
