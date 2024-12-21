@@ -1,38 +1,57 @@
-import axios, { AxiosInstance } from 'axios';
+const BASE_URL = 'http://localhost:3000'; // Substitua pelo URL base da sua API
 
-const baseURL = 'http://localhost:3000'; // URL base da API
+const getAuthToken = (): string => {
+  return localStorage.getItem('authToken') || '';
+};
 
-const api: AxiosInstance = axios.create({
-  baseURL,
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+interface RequestOptions extends RequestInit {
+  headers?: Record<string, string>;
+}
 
+async function request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
+  try {
+    const token = getAuthToken();
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { Authorization: `Bearer ${token}` })
+      },
+      ...options,
+    });
 
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('byte-bank-token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 
-// Interceptores de resposta
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      console.error('Não autorizado, redirecionando...');
-    }
-    return Promise.reject(error);
+    return response.json();
+  } catch (error) {
+    console.error('API request failed:', error);
+    throw error;
   }
-);
+}
+
+const api = {
+  get: async <T>(endpoint: string): Promise<T> =>
+    request<T>(endpoint, {
+      method: 'GET'
+    }),
+
+  post: async <T>(endpoint: string, payload: unknown): Promise<T> =>
+    request<T>(endpoint, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    }),
+
+  put: async <T>(endpoint: string, payload: unknown): Promise<T> =>
+    request<T>(endpoint, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    }),
+
+  delete: async <T>(endpoint: string): Promise<T> =>
+    request<T>(endpoint, {
+      method: 'DELETE',
+    }),
+};
 
 export default api;

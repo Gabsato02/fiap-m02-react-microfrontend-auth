@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-
 import registerImage from '../assets/register-desktop.svg';
 import registerImageMobile from '../assets/register-mobile.svg';
 import { Button } from "../../../components";
@@ -11,7 +10,16 @@ export default function RegisterModal() {
 
   const [loading, setLoading] = React.useState(false);
 
-  const onSubmit = async (form) => {
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { 
+      errors, 
+      isValid 
+    }
+  } = useForm({ mode: 'onChange' });
+
+  const handleCreateUser = async (form) => {
     setLoading(true);
 
     try {
@@ -25,15 +33,6 @@ export default function RegisterModal() {
     }
   };
 
-  const { 
-    register, 
-    handleSubmit, 
-    formState: { 
-      errors, 
-      isValid 
-    }
-  } = useForm({ mode: 'onChange' });
-  
   return (
     <div
       className="modal fade"
@@ -47,7 +46,7 @@ export default function RegisterModal() {
           <div className="modal-body">
             <img src={registerImage} className="img-fluid mx-auto d-none d-md-block" alt="..."></img>
             <img src={registerImageMobile} className="d-block mx-auto d-md-none img-fluid" alt="..."></img>
-            <form className="mt-3 needs-validation" noValidate onSubmit={handleSubmit(onSubmit)}>
+            <form className="mt-3 needs-validation" noValidate onSubmit={handleSubmit(handleCreateUser)}>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
                   Nome
