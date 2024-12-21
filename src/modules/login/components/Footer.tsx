@@ -45,7 +45,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="text-center p-3 text-white-50 font-weight-light">
-        <small>© Desenvolvido por Gabriel Sato</small>
+        <small>© Desenvolvido por Grupo 12 - FIAP Pós Tech</small>
       </div>
     </footer>
   );

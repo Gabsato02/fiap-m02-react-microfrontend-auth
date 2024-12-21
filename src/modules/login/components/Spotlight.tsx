@@ -16,29 +16,33 @@ export default function Spotlight() {
         <hr className="my-4"></hr>
         <div className="grid g-2">
           <div className="row row-gap-4">
-            <div className="col-12 col-md-6 col-lg-3 border-success">
-              <div className="card-body">
+            <div className="col-12 col-md-6 col-lg-3 border-success text-center">
+              <i className="fa-regular fa-credit-card fa-2xl text-success"></i>
+              <div className="card-body mt-3">
                 <h5 className="card-title mb-2 text-success">Conta e cartão gratuitos</h5>
                 <p className="card-text">Isso mesmo, nossa conta é digital, sem custo fixo e mais que isso: sem tarifa de manutenção.</p>
               </div>
             </div>
 
-            <div className="col-12 col-md-6 col-lg-3 border-success">
-              <div className="card-body">
+            <div className="col-12 col-md-6 col-lg-3 border-success text-center">
+              <i className="fa-solid fa-money-bill-transfer fa-2xl text-success"></i>
+              <div className="card-body mt-3">
                 <h5 className="card-title mb-2 text-success">Saques sem custo</h5>
                 <p className="card-text">Você pode sacar gratuitamente 4x por mês de qualquer Banco 24h.</p>
               </div>
             </div>
     
-            <div className="col-12 col-md-6 col-lg-3 border-success">
-              <div className="card-body">
+            <div className="col-12 col-md-6 col-lg-3 border-success text-center">
+              <i className="fa-solid fa-star fa-2xl text-success"></i>
+              <div className="card-body mt-3">
                 <h5 className="card-title mb-2 text-success">Programa de pontos</h5>
                 <p className="card-text">Acumule pontos com suas compras no crédito sem pagar mensalidade!</p>
               </div>
             </div>
 
-            <div className="col-12 col-md-6 col-lg-3 border-success">
-              <div className="card-body">
+            <div className="col-12 col-md-6 col-lg-3 border-success text-center">
+              <i className="fa-solid fa-mobile-screen fa-2xl text-success"></i>
+              <div className="card-body mt-3">
                 <h5 className="card-title mb-2 text-success">Seguro Dispositivos</h5>
                 <p className="card-text">Seus dispositivos móveis (computador e laptop) protegidos por uma mensalidade simbólica.</p>
               </div>

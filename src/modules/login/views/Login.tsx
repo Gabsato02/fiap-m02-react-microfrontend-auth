@@ -7,12 +7,12 @@ import Spotlight from "../components/Spotlight";
 
 export default function Login(props) {
   return (
-    <>
+    <div className="min-vh-100 bg-light">
       <Nav></Nav>
       <LoginModal></LoginModal>
       <RegisterModal></RegisterModal>
       <Spotlight></Spotlight>
       <Footer></Footer>
-    </>
+    </div>
   );
 }
